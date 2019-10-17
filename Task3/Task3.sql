@@ -10,7 +10,7 @@ SELECT user_id,r,f,m,s,
 (
 SELECT user_id,SUM(price) s,
   CASE WHEN TIMESTAMPDIFF(DAY,MAX(o_date),date('2017-12-31')) > 60 THEN "1"
-       WHEN TIMESTAMPDIFF(DAY,MAX(o_date),date('2017-12-31')) < 60 AND TIMESTAMPDIFF(DAY,o_date,date('2017-12-31')) > 30 THEN "2"
+       WHEN TIMESTAMPDIFF(DAY,MAX(o_date),date('2017-12-31')) <= 60 AND TIMESTAMPDIFF(DAY,o_date,date('2017-12-31')) > 30 THEN "2"
   ELSE "3" END AS r,
   CASE WHEN COUNT(*) <= 1 THEN "1"
        WHEN COUNT(*) > 1 AND COUNT(*) <= 4 THEN "2"
@@ -36,7 +36,7 @@ SELECT user_id,r,f,m,s,
 (
 SELECT user_id,SUM(price) s,
   CASE WHEN TIMESTAMPDIFF(DAY,MAX(o_date),date('2017-12-31')) > 60 THEN "1"
-       WHEN TIMESTAMPDIFF(DAY,MAX(o_date),date('2017-12-31')) < 60 AND TIMESTAMPDIFF(DAY,o_date,date('2017-12-31')) > 30 THEN "2"
+       WHEN TIMESTAMPDIFF(DAY,MAX(o_date),date('2017-12-31')) <= 60 AND TIMESTAMPDIFF(DAY,o_date,date('2017-12-31')) > 30 THEN "2"
   ELSE "3" END AS r,
   CASE WHEN COUNT(*) <= 1 THEN "1"
        WHEN COUNT(*) > 1 AND COUNT(*) <= 4 THEN "2"
@@ -62,7 +62,7 @@ SELECT user_id,r,f,m,s,
 (
 SELECT user_id,SUM(price) s,
   CASE WHEN TIMESTAMPDIFF(DAY,MAX(o_date),date('2017-12-31')) > 60 THEN "1"
-       WHEN TIMESTAMPDIFF(DAY,MAX(o_date),date('2017-12-31')) < 60 AND TIMESTAMPDIFF(DAY,o_date,date('2017-12-31')) > 30 THEN "2"
+       WHEN TIMESTAMPDIFF(DAY,MAX(o_date),date('2017-12-31')) <= 60 AND TIMESTAMPDIFF(DAY,o_date,date('2017-12-31')) > 30 THEN "2"
   ELSE "3" END AS r,
   CASE WHEN COUNT(*) <= 1 THEN "1"
        WHEN COUNT(*) > 1 AND COUNT(*) <= 4 THEN "2"
@@ -82,3 +82,5 @@ SELECT COUNT(DISTINCT user_id)
 -- вся прибыль
 SELECT SUM(price)
  FROM orders.orders_
+
+
