@@ -34,9 +34,142 @@ SELECT user_id, date_
  SELECT user_id, MIN(o_date) AS date_
   FROM orders.orders_
   GROUP BY user_id) t
-  WHERE YEAR(t.date_) = 2016 AND MONTH(t.date_) = 2) tt
+  WHERE YEAR(t.date_) = 2016 AND MONTH(t.date_) = 8) tt
+  ON (o.user_id = tt.user_id)
+  WHERE YEAR(o_date) = 2017 AND MONTH(o_date) = 1
+  UNION ALL
+SELECT SUM(price)
+  FROM orders.orders_ o
+  JOIN (
+SELECT user_id, date_
+  FROM (
+ SELECT user_id, MIN(o_date) AS date_
+  FROM orders.orders_
+  GROUP BY user_id) t
+  WHERE YEAR(t.date_) = 2016 AND MONTH(t.date_) = 8) tt
+  ON (o.user_id = tt.user_id)
+  WHERE YEAR(o_date) = 2017 AND MONTH(o_date) = 2
+    UNION ALL
+SELECT SUM(price)
+  FROM orders.orders_ o
+  JOIN (
+SELECT user_id, date_
+  FROM (
+ SELECT user_id, MIN(o_date) AS date_
+  FROM orders.orders_
+  GROUP BY user_id) t
+  WHERE YEAR(t.date_) = 2016 AND MONTH(t.date_) = 8) tt
+  ON (o.user_id = tt.user_id)
+  WHERE YEAR(o_date) = 2017 AND MONTH(o_date) = 3
+    UNION ALL
+SELECT SUM(price)
+  FROM orders.orders_ o
+  JOIN (
+SELECT user_id, date_
+  FROM (
+ SELECT user_id, MIN(o_date) AS date_
+  FROM orders.orders_
+  GROUP BY user_id) t
+  WHERE YEAR(t.date_) = 2016 AND MONTH(t.date_) = 8) tt
+  ON (o.user_id = tt.user_id)
+  WHERE YEAR(o_date) = 2017 AND MONTH(o_date) = 4 
+ UNION ALL
+SELECT SUM(price)
+  FROM orders.orders_ o
+  JOIN (
+SELECT user_id, date_
+  FROM (
+ SELECT user_id, MIN(o_date) AS date_
+  FROM orders.orders_
+  GROUP BY user_id) t
+  WHERE YEAR(t.date_) = 2016 AND MONTH(t.date_) = 8) tt
+  ON (o.user_id = tt.user_id)
+  WHERE YEAR(o_date) = 2017 AND MONTH(o_date) = 5
+      UNION ALL
+SELECT SUM(price)
+  FROM orders.orders_ o
+  JOIN (
+SELECT user_id, date_
+  FROM (
+ SELECT user_id, MIN(o_date) AS date_
+  FROM orders.orders_
+  GROUP BY user_id) t
+  WHERE YEAR(t.date_) = 2016 AND MONTH(t.date_) = 8) tt
+  ON (o.user_id = tt.user_id)
+  WHERE YEAR(o_date) = 2017 AND MONTH(o_date) = 6
+      UNION ALL
+SELECT SUM(price)
+  FROM orders.orders_ o
+  JOIN (
+SELECT user_id, date_
+  FROM (
+ SELECT user_id, MIN(o_date) AS date_
+  FROM orders.orders_
+  GROUP BY user_id) t
+  WHERE YEAR(t.date_) = 2016 AND MONTH(t.date_) = 8) tt
+  ON (o.user_id = tt.user_id)
+  WHERE YEAR(o_date) = 2017 AND MONTH(o_date) = 7
+      UNION ALL
+SELECT SUM(price)
+  FROM orders.orders_ o
+  JOIN (
+SELECT user_id, date_
+  FROM (
+ SELECT user_id, MIN(o_date) AS date_
+  FROM orders.orders_
+  GROUP BY user_id) t
+  WHERE YEAR(t.date_) = 2016 AND MONTH(t.date_) = 8) tt
+  ON (o.user_id = tt.user_id)
+  WHERE YEAR(o_date) = 2017 AND MONTH(o_date) = 8
+      UNION ALL
+SELECT SUM(price)
+  FROM orders.orders_ o
+  JOIN (
+SELECT user_id, date_
+  FROM (
+ SELECT user_id, MIN(o_date) AS date_
+  FROM orders.orders_
+  GROUP BY user_id) t
+  WHERE YEAR(t.date_) = 2016 AND MONTH(t.date_) = 8) tt
+  ON (o.user_id = tt.user_id)
+  WHERE YEAR(o_date) = 2017 AND MONTH(o_date) = 9
+      UNION ALL
+SELECT SUM(price)
+  FROM orders.orders_ o
+  JOIN (
+SELECT user_id, date_
+  FROM (
+ SELECT user_id, MIN(o_date) AS date_
+  FROM orders.orders_
+  GROUP BY user_id) t
+  WHERE YEAR(t.date_) = 2016 AND MONTH(t.date_) = 8) tt
+  ON (o.user_id = tt.user_id)
+  WHERE YEAR(o_date) = 2017 AND MONTH(o_date) = 10
+      UNION ALL
+SELECT SUM(price)
+  FROM orders.orders_ o
+  JOIN (
+SELECT user_id, date_
+  FROM (
+ SELECT user_id, MIN(o_date) AS date_
+  FROM orders.orders_
+  GROUP BY user_id) t
+  WHERE YEAR(t.date_) = 2016 AND MONTH(t.date_) = 8) tt
+  ON (o.user_id = tt.user_id)
+  WHERE YEAR(o_date) = 2017 AND MONTH(o_date) = 11
+      UNION ALL
+SELECT SUM(price)
+  FROM orders.orders_ o
+  JOIN (
+SELECT user_id, date_
+  FROM (
+ SELECT user_id, MIN(o_date) AS date_
+  FROM orders.orders_
+  GROUP BY user_id) t
+  WHERE YEAR(t.date_) = 2016 AND MONTH(t.date_) = 8) tt
   ON (o.user_id = tt.user_id)
   WHERE YEAR(o_date) = 2017 AND MONTH(o_date) = 12
+
 
 /*DELIMITER //
 CREATE PROCEDURE mypro ()
