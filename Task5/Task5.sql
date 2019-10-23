@@ -73,8 +73,25 @@ SELECT user_id, CEIL(AVG(price)) a,
                 30/TIMESTAMPDIFF(DAY, MIN(o_date),MAX(o_date))/(COUNT(id_o)-1) a_d, 
                 COUNT(id_o) c,
                 MAX(o_date) max_date,
-                CEIL(30/TIMESTAMPDIFF(DAY, MIN(o_date),MAX(o_date))/(COUNT(id_o)-1)* AVG(price)) sum_per_month
+                30 * CEIL(30/TIMESTAMPDIFF(DAY, MIN(o_date),MAX(o_date))/(COUNT(id_o)-1)* AVG(price)) sum_per_month
            FROM orders.orders_before_0517
             GROUP BY user_id
             HAVING c >= 3 AND max_date > date('2017-04-01') AND days > 5
             ORDER BY sum_per_month DESC
+
+-- сумма пользователей 1 группы за мес€ц
+SELECT SUM(t.sum_per_month)
+  FROM
+  (
+  SELECT user_id, CEIL(AVG(price)) a, 
+                SUM(price) s, 
+                TIMESTAMPDIFF(DAY, MIN(o_date), MAX(o_date)) days, 
+                30/TIMESTAMPDIFF(DAY, MIN(o_date),MAX(o_date))/(COUNT(id_o)-1) a_d, 
+                COUNT(id_o) c,
+                MAX(o_date) max_date,
+                30 * CEIL(30/TIMESTAMPDIFF(DAY, MIN(o_date),MAX(o_date))/(COUNT(id_o)-1)* AVG(price)) sum_per_month
+           FROM orders.orders_before_0517
+            GROUP BY user_id
+            HAVING c >= 3 AND max_date > date('2017-04-01') AND days > 5
+  ) t
+  
